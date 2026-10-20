@@ -7,12 +7,13 @@ A React merch store for my music brand, Code To The Core. I built the first vers
 ## Features
 
 - **8 products** (vinyl, beat packs, apparel, a mix session) with category filters
+- **Hear before you buy:** voice-tagged previews of my beats on the Beat Pack and Sample Pack, plus real cover art and photos
 - **Cart:** add items, change quantities (going below 1 removes the item), remove items
 - **Live totals:** subtotal, NYC sales tax, shipping (free over $50, and never for digital-only orders), and the total
 - **Promo codes:** try `CORE10` for 10% off
 - **Saved cart:** the cart is kept in `localStorage`, so it survives a refresh
 - **Checkout:** shows an order confirmation (demo store, no payment)
-- **Responsive:** the cart sits beside the products on desktop and below them on phones
+- **Responsive:** the cart sits beside the products on desktop. On phones the products shrink to compact rows, and a cart bar stays at the bottom of the screen with the item count and subtotal
 
 ### How the money math works
 

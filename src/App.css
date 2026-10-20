@@ -226,3 +226,85 @@ button { font: inherit; cursor: pointer; }
   .layout { grid-template-columns: 1fr; }
   .cart { position: static; }
 }
+
+/* ---------- compact cards: more products on screen ---------- */
+.product-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+.product-card { padding: 12px; }
+.product-icon {
+  height: 120px;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+.product-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background: var(--accent-dark);
+}
+.product-description { margin-bottom: 8px; }
+.product-preview {
+  width: 100%;
+  height: 32px;
+  margin-bottom: 10px;
+}
+.tag { top: 20px; right: 20px; }
+.cart-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- cart bar: stays at the bottom when the cart is below the products ---------- */
+.cart-bar { display: none; }
+@media (max-width: 860px) {
+  .App { padding-bottom: 80px; }
+  .cart-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: var(--accent);
+    color: #04111b;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+}
+
+/* phones: image beside the details, so each product takes much less height */
+@media (max-width: 520px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .product-card {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    column-gap: 12px;
+    align-items: start;
+  }
+  .product-card .product-icon,
+  .product-card .product-image {
+    grid-row: span 4;
+    height: 96px;
+    margin: 0;
+  }
+  .product-card h3 { font-size: 1rem; }
+  .product-description { font-size: 0.85rem; }
+  .product-preview { grid-column: 2; }
+  .product-footer { grid-column: 2; }
+  .tag { top: 8px; right: 8px; }
+}
+
+/* show the whole cover or photo instead of cropping it */
+.product-image { object-fit: contain; }

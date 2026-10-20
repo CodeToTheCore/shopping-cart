@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductList from './productList';
 import CartItem from './CartItem';
 import CartSummary from './CartSummary';
-import { itemCount, formatPrice } from './cartMath';
+import { itemCount, formatPrice, subtotal } from './cartMath';
 import './App.css';
 
 const STORAGE_KEY = 'core-cart';
@@ -20,6 +20,17 @@ function App() {
   const [cartItems, setCartItems] = useState(loadCart);
   const [orderTotal, setOrderTotal] = useState(null);
 
+  // only one audio preview plays at a time
+  useEffect(() => {
+    const pauseOthers = (event) => {
+      document.querySelectorAll('audio').forEach((audio) => {
+        if (audio !== event.target) audio.pause();
+      });
+    };
+    document.addEventListener('play', pauseOthers, true);
+    return () => document.removeEventListener('play', pauseOthers, true);
+  }, []);
+
   // Save the cart every time it changes
   useEffect(() => {
     try {
@@ -29,28 +40,27 @@ function App() {
     }
   }, [cartItems]);
 
+  // Each update uses the latest cart (prev), so fast clicks never overwrite each other
   const addItem = (product) => {
-    const exists = cartItems.find(item => item.id === product.id);
-    if (exists) {
-      incrementQuantity(product.id);
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
+    setCartItems(prev => prev.some(item => item.id === product.id)
+      ? prev.map(item => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)
+      : [...prev, { ...product, quantity: 1 }]
+    );
   };
 
   const removeItem = (itemId) => {
-    setCartItems(cartItems.filter(item => item.id !== itemId));
+    setCartItems(prev => prev.filter(item => item.id !== itemId));
   };
 
   const incrementQuantity = (itemId) => {
-    setCartItems(cartItems.map(item =>
+    setCartItems(prev => prev.map(item =>
       item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
     ));
   };
 
   // going below 1 removes the item from the cart
   const decrementQuantity = (itemId) => {
-    setCartItems(cartItems
+    setCartItems(prev => prev
       .map(item => item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item)
       .filter(item => item.quantity > 0)
     );
@@ -104,6 +114,14 @@ function App() {
           )}
         </aside>
       </main>
+
+      {/* phones and small windows: the cart is below the products, so keep the total in view */}
+      {cartItems.length > 0 && (
+        <a href="#cart" className="cart-bar">
+          <span>🛒 {itemCount(cartItems)} {itemCount(cartItems) === 1 ? 'item' : 'items'}</span>
+          <span>Subtotal {formatPrice(subtotal(cartItems))} · View cart</span>
+        </a>
+      )}
     </div>
   );
 }

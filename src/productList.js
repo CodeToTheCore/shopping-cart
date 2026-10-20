@@ -24,9 +24,17 @@ function ProductList({ onAddItem, cartItems }) {
             <ul className="product-grid">
                 {shown.map(product => (
                     <li key={product.id} className="product-card">
-                        <div className="product-icon" aria-hidden="true">{product.icon}</div>
+                        {product.image ? (
+                            <img className="product-image" src={product.image} alt={product.name} loading="lazy" />
+                        ) : (
+                            <div className="product-icon" aria-hidden="true">{product.icon}</div>
+                        )}
                         <h3>{product.name}</h3>
                         <p className="product-description">{product.description}</p>
+                        {product.preview && (
+                            <audio className="product-preview" controls preload="none" src={product.preview}
+                                aria-label={`Preview ${product.name}`} />
+                        )}
                         <div className="product-footer">
                             <span className="price">{formatPrice(product.price)}</span>
                             <button className="add-button" onClick={() => onAddItem(product)}>

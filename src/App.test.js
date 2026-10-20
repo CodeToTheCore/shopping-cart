@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent, within, act } from '@testing-library/react';
 import App from './App';
 
 beforeEach(() => localStorage.clear());
@@ -44,4 +44,16 @@ test('remembers the cart after a refresh', () => {
   unmount();
   render(<App />);
   expect(screen.getByText('🛒 1')).toBeInTheDocument();
+});
+
+test('fast clicks on different products keep every item', () => {
+  render(<App />);
+  const [first, second, third] = screen.getAllByText('Add to Cart');
+  act(() => {
+    first.click();
+    second.click();
+    third.click();
+  });
+  const cart = screen.getByRole('complementary', { name: 'Shopping cart' });
+  expect(within(cart).getByText('Total Items: 3')).toBeInTheDocument();
 });

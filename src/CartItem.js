@@ -4,7 +4,9 @@ import { formatPrice } from "./cartMath";
 function CartItem({ item, onRemoveItem, onIncrement, onDecrement }){
     return(
         <li className="cart-item">
-            <span className="cart-icon" aria-hidden="true">{item.icon}</span>
+            {item.image
+                ? <img className="cart-thumb" src={item.image} alt="" />
+                : <span className="cart-icon" aria-hidden="true">{item.icon}</span>}
             <div className="cart-details">
                 <p className="cart-name">{item.name}</p>
                 <p className="cart-price">{formatPrice(item.price)} each</p>
