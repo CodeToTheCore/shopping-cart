@@ -28,13 +28,7 @@ Wholesale usually needs a **business registration** (an LLC or a DBA), a **resal
 | G-Star Raw | g-star.com | | | | Not contacted | |
 | Ewing Athletics | shop.ewingathletics.com | | | | Not contacted | |
 | Voyage Studio | ⚠️ confirm website | | | | Not contacted | voyagestudio.com wasn't responding on Oct 20, 2026 |
-| Nike | nike.com | | | | Not contacted | |
-| Avirex | avirex.com | | | | Not contacted | NY-based outerwear (leather and flight jackets) |
 
 **Where to look:** the footer of each brand's website, under links like "Affiliates," "Partners," "Wholesale," "Retailers," or "Contact." Smaller brands often answer an email or Instagram DM.
 
 **When a brand says yes:** put the tracking link in `affiliateUrl` and any discount code in `promoCode` in `src/brands.js`. The "Shop" button switches to the new link automatically.
-
-## Gore-Tex (a material, not a store)
-
-Gore-Tex makes the waterproof fabric inside jackets and boots from brands like The North Face, Timberland, and Nike. It doesn't sell clothing itself, so there's no Gore-Tex shop or affiliate program to join. Feature Gore-Tex **through the brands**: when I pick a specific jacket or boot that uses it, tag that product "GORE-TEX."

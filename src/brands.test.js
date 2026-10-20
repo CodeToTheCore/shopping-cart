@@ -2,12 +2,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import BrandsSection from './BrandsSection';
 import brands, { shopLink, initials } from './brands';
 
-test('shows all 14 brands with a shop link and filters by category', () => {
+test('shows all 12 brands with a shop link and filters by category', () => {
   render(<BrandsSection />);
-  expect(screen.getAllByRole('link', { name: /^Shop / })).toHaveLength(14);
+  expect(screen.getAllByRole('link', { name: /^Shop / })).toHaveLength(12);
   fireEvent.click(screen.getByRole('button', { name: 'Footwear' }));
   const names = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent);
-  expect(names).toEqual(expect.arrayContaining(['New Balance', 'Timberland', 'Ewing Athletics', 'Nike']));
+  expect(names).toEqual(expect.arrayContaining(['New Balance', 'Timberland', 'Ewing Athletics']));
   expect(names).not.toContain('Columbia');
 });
 
