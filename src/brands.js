@@ -23,6 +23,8 @@ const brands = [
   { id: 11, name: 'Ewing Athletics', category: 'Footwear', url: 'https://shop.ewingathletics.com' },
   // TODO: confirm Voyage Studio's website. voyagestudio.com wasn't responding on Oct 20, 2026
   { id: 12, name: 'Voyage Studio', category: 'Streetwear & Denim', url: 'https://www.voyagestudio.com' },
+  { id: 13, name: 'Nike', category: 'Footwear', url: 'https://www.nike.com' },
+  { id: 14, name: 'Avirex', category: 'Outerwear', url: 'https://www.avirex.com' },
 ].map((brand) => ({ affiliateUrl: null, promoCode: null, note: '', ...brand }));
 
 export const brandCategories = ['All', ...new Set(brands.map((b) => b.category))];
