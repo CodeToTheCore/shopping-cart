@@ -8,7 +8,7 @@ function ProductList({ onAddItem, cartItems }) {
     const quantityInCart = (id) => cartItems.find((item) => item.id === id)?.quantity || 0;
 
     return (
-        <section className="products" id="products" aria-label="Products">
+        <section className="products" aria-label="Products">
             <div className="filters" role="group" aria-label="Filter by category">
                 {categories.map((c) => (
                     <button

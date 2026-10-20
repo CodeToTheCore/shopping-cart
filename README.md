@@ -7,7 +7,6 @@ A React merch store for my music brand, Code To The Core. I built the first vers
 ## Features
 
 - **8 products** (vinyl, beat packs, apparel, a mix session) with category filters
-- **Brands I Rock:** 12 brands I wear, filtered by category, each with a Shop button to the brand's own site. Links are tagged so brands can see the visitors I send them, and they switch to affiliate links as partnerships come through (see [BRAND-PARTNERS.md](BRAND-PARTNERS.md)).
 - **Hear before you buy:** voice-tagged previews of my beats on the Beat Pack and Sample Pack, plus real cover art and photos
 - **Cart:** add items, change quantities (going below 1 removes the item), remove items
 - **Live totals:** subtotal, NYC sales tax, shipping (free over $50, and never for digital-only orders), and the total
