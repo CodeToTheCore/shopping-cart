@@ -1,15 +1,22 @@
-# Shopping Cart (React)
+# Code To The Core Merch Store (React Shopping Cart)
 
-A small React app that manages a shopping cart with component state. Built in March 2025 during Pursuit to practice lifting state up and passing callbacks as props.
+A React merch store for my music brand, Code To The Core. I built the first version in March 2025 at Pursuit to practice lifting state up and passing callbacks as props, and expanded it into a full store in October 2026.
 
 **Live demo:** https://codetothecore.github.io/shopping-cart/
 
 ## Features
 
-- Add products to the cart from a product list
-- Increase or decrease each item's quantity
-- Remove items from the cart
-- Cart summary that shows the total number of items
+- **8 products** (vinyl, beat packs, apparel, a mix session) with category filters
+- **Cart:** add items, change quantities (going below 1 removes the item), remove items
+- **Live totals:** subtotal, NYC sales tax, shipping (free over $50, and never for digital-only orders), and the total
+- **Promo codes:** try `CORE10` for 10% off
+- **Saved cart:** the cart is kept in `localStorage`, so it survives a refresh
+- **Checkout:** shows an order confirmation (demo store, no payment)
+- **Responsive:** the cart sits beside the products on desktop and below them on phones
+
+### How the money math works
+
+All prices are stored in **cents** (whole numbers). In JavaScript, `0.1 + 0.2` is `0.30000000000000004`, so storing dollars as decimals causes rounding bugs. The math lives in [`src/cartMath.js`](src/cartMath.js), separate from the UI, which makes it easy to test.
 
 ## Built with
 
@@ -22,4 +29,4 @@ npm install
 npm start
 ```
 
-Run the tests with `npm test`.
+Run the tests with `npm test` (10 tests covering the cart math and the full add, update, promo, and checkout flow).

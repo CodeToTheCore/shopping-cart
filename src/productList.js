@@ -1,16 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import products, { categories } from './products';
+import { formatPrice } from './cartMath';
 
-function ProductList({ onAddItem}) {
-    const products = [{ id: 1, name: 'Product 1'}, {id: 2, name: 'Product 2'}];
+function ProductList({ onAddItem, cartItems }) {
+    const [category, setCategory] = useState('All');
+    const shown = category === 'All' ? products : products.filter((p) => p.category === category);
+    const quantityInCart = (id) => cartItems.find((item) => item.id === id)?.quantity || 0;
+
     return (
-    <ul>
-        {products.map(product => (
-            <li key={product.id}>
-                {product.name}
-                <button onClick={() => onAddItem(product)}>Add to Cart</button>
-            </li>
-        ))}
-    </ul>
+        <section className="products" aria-label="Products">
+            <div className="filters" role="group" aria-label="Filter by category">
+                {categories.map((c) => (
+                    <button
+                        key={c}
+                        className={c === category ? 'filter active' : 'filter'}
+                        aria-pressed={c === category}
+                        onClick={() => setCategory(c)}
+                    >
+                        {c}
+                    </button>
+                ))}
+            </div>
+            <ul className="product-grid">
+                {shown.map(product => (
+                    <li key={product.id} className="product-card">
+                        <div className="product-icon" aria-hidden="true">{product.icon}</div>
+                        <h3>{product.name}</h3>
+                        <p className="product-description">{product.description}</p>
+                        <div className="product-footer">
+                            <span className="price">{formatPrice(product.price)}</span>
+                            <button className="add-button" onClick={() => onAddItem(product)}>
+                                {quantityInCart(product.id) ? `Add another (${quantityInCart(product.id)})` : 'Add to Cart'}
+                            </button>
+                        </div>
+                        {product.digital && <span className="tag">Digital</span>}
+                    </li>
+                ))}
+            </ul>
+        </section>
     );
 }
 
