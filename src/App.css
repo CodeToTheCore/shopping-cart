@@ -308,3 +308,87 @@ button { font: inherit; cursor: pointer; }
 
 /* show the whole cover or photo instead of cropping it */
 .product-image { object-fit: contain; }
+
+/* ---------- section links in the header ---------- */
+.store-nav { display: flex; gap: 6px; margin-left: auto; }
+.store-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.store-nav a:hover { color: var(--text); background: var(--panel); }
+.shop-column { min-width: 0; }
+html { scroll-behavior: smooth; }
+#products, #brands, #cart { scroll-margin-top: 16px; }
+
+/* ---------- Brands I Rock ---------- */
+.brands {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.brands-head h2 { margin: 0; font-size: 1.5rem; }
+.brands-head p { margin: 4px 0 14px; color: var(--muted); }
+
+.brand-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.brand-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  transition: border-color 0.15s;
+}
+.brand-card:hover { border-color: var(--accent); }
+.brand-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--accent-dark);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.brand-body h3 { margin: 0; font-size: 1rem; }
+.brand-body p { margin: 2px 0 0; font-size: 0.85rem; }
+.brand-category { color: var(--muted); }
+.brand-note { font-style: italic; }
+.brand-code strong { color: var(--success); }
+.disclosure {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 14px 0 0;
+}
+
+@media (max-width: 600px) {
+  .store-header { flex-wrap: wrap; }
+  .store-nav { order: 3; margin-left: 0; width: 100%; }
+}
+
+.brand-shop {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.brand-shop:hover { background: var(--accent); color: #04111b; }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductList from './productList';
 import CartItem from './CartItem';
 import CartSummary from './CartSummary';
+import BrandsSection from './BrandsSection';
 import { itemCount, formatPrice, subtotal } from './cartMath';
 import './App.css';
 
@@ -78,6 +79,10 @@ function App() {
           <h1>Code To The Core <span>Merch</span></h1>
           <p>Music, beats, and gear from CoreTheProducer</p>
         </div>
+        <nav className="store-nav" aria-label="Store sections">
+          <a href="#products">Merch</a>
+          <a href="#brands">Brands I Rock</a>
+        </nav>
         <a href="#cart" className="cart-count" aria-label={`Cart, ${itemCount(cartItems)} items`}>
           🛒 {itemCount(cartItems)}
         </a>
@@ -91,7 +96,10 @@ function App() {
       )}
 
       <main className="layout">
-        <ProductList onAddItem={addItem} cartItems={cartItems} />
+        <div className="shop-column">
+          <ProductList onAddItem={addItem} cartItems={cartItems} />
+          <BrandsSection />
+        </div>
 
         <aside className="cart" id="cart" aria-label="Shopping cart">
           <h2>Your Cart</h2>
