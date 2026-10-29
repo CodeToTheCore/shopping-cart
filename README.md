@@ -2,7 +2,7 @@
 
 A React merch store for my music brand, Code To The Core. I built the first version in March 2025 at Pursuit to practice lifting state up and passing callbacks as props, and expanded it into a full store in October 2026.
 
-**Live demo:** https://codetothecore.github.io/shopping-cart/
+**Live demo:** https://core-merch-store.vercel.app
 
 ## Features
 
